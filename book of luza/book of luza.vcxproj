@@ -141,6 +141,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="spriteCreation.cpp" />
     <ClCompile Include="spriteMovement.cpp" />
+    <ClCompile Include="spriteMovement.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\book_of_luza_bg.png" />

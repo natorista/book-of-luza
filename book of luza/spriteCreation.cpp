@@ -16,12 +16,12 @@ struct aspectProperties {
 
 std::unordered_map<std::string, aspectProperties> mapaSBlagom = {
 	{"luza",	{"resources/luza_aspect.png",		{1.5f, 1.5f}, {1.0f, 1.0f}, {50.0f, 50.0f}}},
-	{"jankula", {"resources/jankula_aspect.png",  {1.5f, 1.5f}, {1.0f, 1.0f}, {50.0f, 50.0f}}},
-	{"glavas",  {"resources/glavas_aspect.png",	{1.5f, 1.5f}, {1.0f, 1.0f}, {50.0f, 50.0f}}},
+	{"jankula", {"resources/jankula_aspect.png",	{1.5f, 1.5f}, {1.0f, 1.0f}, {50.0f, 50.0f}}},
+	{"glavas",  {"resources/glavas_aspect.png",		{1.5f, 1.5f}, {1.0f, 1.0f}, {50.0f, 50.0f}}},
 	{"vasa",	{"resources/vasa_aspect.png",		{1.5f, 1.5f}, {1.0f, 1.0f}, {50.0f, 50.0f}}},
 	{"paja",	{"resources/paja_aspect.png",		{1.5f, 1.5f}, {1.0f, 1.0f}, {50.0f, 50.0f}}},
-	{"tamara",  {"resources/tamara_aspect.png",	{1.5f, 1.5f}, {1.0f, 1.0f}, {50.0f, 50.0f}}},
-};	//str ime   //textureFile			//scale		  //position	//origin
+	{"tamara",  {"resources/tamara_aspect.png",		{1.5f, 1.5f}, {1.0f, 1.0f}, {50.0f, 50.0f}}},
+};	//str ime   //textureFile						//scale		  //position	//origin
 
 std::unordered_map<std::string, sf::Texture> textureCache;
 
