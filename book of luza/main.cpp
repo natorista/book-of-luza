@@ -26,13 +26,16 @@ void resetSprites(std::vector<sf::Sprite>& current_sprites1,
     const sf::Vector2f& nultaPozicija3,
     int& kolona1Choice,
     int& kolona2Choice,
-    int& kolona3Choice)
+    int& kolona3Choice,
+    std::vector < std::string>& aspectsForChecking)
 {
     current_sprites1.clear();  // Clear existing sprites
     current_sprites2.clear();  // Clear existing sprites
     current_sprites3.clear();  // Clear existing sprites
 
-    std::vector<std::string> ImenaUKoloni1 = imenaUkupno(nPokoloni);
+    aspectsForChecking.clear(); //resets vector with previous choices
+
+    std::vector<std::string> ImenaUKoloni1 = imenaUkupno(nPokoloni);    //imenaUkupno, from spriteCreation, a string vector that gives nPokoloni names for aspects
     std::vector<std::string> ImenaUKoloni2 = imenaUkupno(nPokoloni);
     std::vector<std::string> ImenaUKoloni3 = imenaUkupno(nPokoloni);
 
@@ -56,10 +59,19 @@ void resetSprites(std::vector<sf::Sprite>& current_sprites1,
     kolona1Choice = kolonaRandomizer(67 * (nPokoloni / 100), 100 * (nPokoloni / 100));
     kolona2Choice = kolonaRandomizer(34 * (nPokoloni / 100), 66 * (nPokoloni / 100));
     kolona3Choice = kolonaRandomizer(1 * (nPokoloni / 100), 33 * (nPokoloni / 100));
+
+    //makes a vector with chosen aspect strings
+    aspectsForChecking.push_back(ImenaUKoloni1[kolona1Choice]);
+    aspectsForChecking.push_back(ImenaUKoloni2[kolona2Choice]);
+    aspectsForChecking.push_back(ImenaUKoloni3[kolona3Choice]);
+
+    //print chosen aspects to cmd
+    for (int i = 0; i < 3; ++i) {
+        std::cout << std::endl << aspectsForChecking[i] << std::endl;
+    }
+
 }
 
-
-float brzinavrcenja = 4.0f;
 
 int main() {
 
@@ -84,22 +96,31 @@ int main() {
     //defining and initializing aspect properties
     int nPokoloni = 100;
 
-    int kolona3choice = kolonaRandomizer(1, 33 * (nPokoloni / 100));
-    int kolona2choice = kolonaRandomizer(34 * (nPokoloni / 100), 66 * (nPokoloni / 100));
-    int kolona1choice = kolonaRandomizer(67 * (nPokoloni / 100), 100 * (nPokoloni / 100));
+
 
     const sf::Vector2f nultaPozicija1 = { 160.0f, -19500.0f };
     const sf::Vector2f nultaPozicija2 = { 310.0f, -20050.0f };
     const sf::Vector2f nultaPozicija3 = { 460.0f, -19500.0f };
 
-    //std::vector<sf::Sprite> current_sprites;
+    float brzinavrcenja = 4.0f; //isk nmp kako ovo funkcioniše
+
+    int kolona1Choice = kolonaRandomizer(67 * (nPokoloni / 100), 100 * (nPokoloni / 100));
+    int kolona2Choice = kolonaRandomizer(34 * (nPokoloni / 100), 66 * (nPokoloni / 100));
+    int kolona3Choice = kolonaRandomizer(1 * (nPokoloni / 100), 33 * (nPokoloni / 100));
+    
+
+
+
     std::vector<sf::Sprite> kolona1sprites;
     std::vector<sf::Sprite> kolona2sprites;
     std::vector<sf::Sprite> kolona3sprites;
+
+    std::vector < std::string> aspectsForChecking;
+
     //end of def. aspect properties
 
     // Initial sprite setup
-    resetSprites(kolona1sprites, kolona2sprites, kolona3sprites, nPokoloni, nultaPozicija1, nultaPozicija2, nultaPozicija3, kolona1choice, kolona2choice, kolona3choice);
+    resetSprites(kolona1sprites, kolona2sprites, kolona3sprites, nPokoloni, nultaPozicija1, nultaPozicija2, nultaPozicija3, kolona1Choice, kolona2Choice, kolona3Choice, aspectsForChecking);
     bool skoroStisnuto = false;
     bool scrolling = true;
 
@@ -107,12 +128,12 @@ int main() {
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed) {
                 window.close();
-
-            // Detect space key press
+            }
+            // Detect space key press and redoes sprites
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
-                resetSprites(kolona1sprites, kolona2sprites, kolona3sprites, nPokoloni, nultaPozicija1, nultaPozicija2, nultaPozicija3, kolona1choice, kolona2choice, kolona3choice);
+                resetSprites(kolona1sprites, kolona2sprites, kolona3sprites, nPokoloni, nultaPozicija1, nultaPozicija2, nultaPozicija3, kolona1Choice, kolona2Choice, kolona3Choice, aspectsForChecking);
                 skoroStisnuto = true;
             }
 
@@ -127,9 +148,9 @@ int main() {
             //end of debugging
         }
         if(skoroStisnuto==true){
-            skrolanje_pozicija(kolona1sprites, brzinavrcenja,nPokoloni,kolona1choice, scrolling);
-            skrolanje_pozicija(kolona2sprites, brzinavrcenja,nPokoloni,kolona2choice, scrolling);
-            skrolanje_pozicija(kolona3sprites, brzinavrcenja,nPokoloni,kolona3choice, scrolling);
+            skrolanje_pozicija(kolona1sprites, brzinavrcenja,nPokoloni,kolona1Choice, scrolling);
+            skrolanje_pozicija(kolona2sprites, brzinavrcenja,nPokoloni,kolona2Choice, scrolling);
+            skrolanje_pozicija(kolona3sprites, brzinavrcenja,nPokoloni,kolona3Choice, scrolling);
         }
 
         //drawing aspects
@@ -144,7 +165,7 @@ int main() {
             window.draw(sprite);
         }
         //end of drawing aspects
-
+        
 
         //final draws
          window.draw(bag_sprite);

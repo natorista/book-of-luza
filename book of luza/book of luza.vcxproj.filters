@@ -30,6 +30,9 @@
     <ClCompile Include="spriteMovement.h">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="payouts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\masina.png">

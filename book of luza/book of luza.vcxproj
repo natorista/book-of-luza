@@ -139,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="columnsLogic.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="payouts.cpp" />
     <ClCompile Include="spriteCreation.cpp" />
     <ClCompile Include="spriteMovement.cpp" />
     <ClCompile Include="spriteMovement.h" />
