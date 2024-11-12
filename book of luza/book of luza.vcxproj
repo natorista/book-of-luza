@@ -137,13 +137,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="columnsLogic.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="spriteCreation.cpp" />
-    <ClCompile Include="spriteMovement.cpp" />
-    <ClCompile Include="spriteMovement.h" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="resources\book_of_luza_bg.png" />
     <Image Include="resources\glavas_aspect.png" />
     <Image Include="resources\jankula_aspect.png" />
@@ -154,8 +147,8 @@
     <Image Include="resources\vasa_aspect.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="columnsLogic.h" />
-    <ClInclude Include="spriteCreation.h" />
+    <ClCompile Include="AspectCreation.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
